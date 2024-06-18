@@ -144,6 +144,20 @@ extension CGVector: CGVectorType {
 }
 
 extension CGRect {
+    /// Initializes a `CGRect` from one or more points
+    /// - Parameter points: a list of one or more points
+    public init(_ points: CGVectorType...) {
+        let xs   = points.map(\.dx)
+        let ys   = points.map(\.dy)
+        
+        let xmin = xs.min() ?? xs[0]
+        let xmax = xs.max() ?? xs[0]
+        let ymin = ys.min() ?? ys[0]
+        let ymax = ys.max() ?? ys[0]
+
+        self.init(x: xmin, y: ymin, width: xmax - xmin, height: ymax - ymin)
+    }
+    
     public struct Position: Hashable, Codable {
         let value: CGFloat
         private init(_ value: CGFloat) {
