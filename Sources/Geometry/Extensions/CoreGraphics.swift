@@ -1,6 +1,6 @@
 //
 //  CoreGraphics.swift
-//  Flair
+//  Geometry
 //
 //  Created by Mark Onyschuk on 09/02/23.
 //  Copyright © 2023 Dimension North Inc. All rights reserved.
@@ -147,6 +147,15 @@ extension CGRect {
     /// Initializes a `CGRect` from one or more points
     /// - Parameter points: a list of one or more points
     public init(_ points: CGVectorType...) {
+        self.init(points)
+    }
+    
+    public init(_ points: [CGVectorType]) {
+        if points.isEmpty {
+            self = .null
+            return
+        }
+
         let xs   = points.map(\.dx)
         let ys   = points.map(\.dy)
         
@@ -154,7 +163,7 @@ extension CGRect {
         let xmax = xs.max() ?? xs[0]
         let ymin = ys.min() ?? ys[0]
         let ymax = ys.max() ?? ys[0]
-
+        
         self.init(x: xmin, y: ymin, width: xmax - xmin, height: ymax - ymin)
     }
     

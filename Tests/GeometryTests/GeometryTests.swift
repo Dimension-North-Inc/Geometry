@@ -32,6 +32,21 @@ final class CGRectTests: XCTestCase {
         
         XCTAssert(r3.contains(p1))
     }
+    
+    func testItInitializesAsANullRectWhenNoPointsArePassed() {
+        let noPoints: [CGPoint] = []
+        
+        let r1 = CGRect(noPoints)
+        
+        XCTAssert(r1.isNull)
+        
+        let somePoints: [CGPoint] = [.zero]
+        
+        let r2 = CGRect(somePoints)
+        
+        XCTAssert(r2.origin == .zero)
+        XCTAssert(r2.size   == .zero)
+    }
 }
 
 final class CGVectorTypeTests: XCTestCase {
