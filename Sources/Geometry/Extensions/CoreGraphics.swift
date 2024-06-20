@@ -150,7 +150,7 @@ extension CGRect {
         self.init(points)
     }
     
-    public init(_ points: [CGVectorType]) {
+    public init(_ points: some Collection<CGVectorType>) {
         if points.isEmpty {
             self = .null
             return
