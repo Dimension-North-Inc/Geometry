@@ -47,6 +47,15 @@ extension CGVectorType {
         Self(1, 1)
     }
     
+    /// Limits the precision of a CGVectorType to a specified number of decimal places.
+    /// - Parameters:
+    ///   - decimalPlaces: The number of decimal places to retain.
+    /// - Returns: A CGVectorType rounded to the specified number of decimal places.
+    public func limitingPrecision(to decimalPlaces: Int) -> Self {
+        Self(dx.limitingPrecision(to: decimalPlaces), dy.limitingPrecision(to: decimalPlaces))
+    }
+
+
     // scalar operators
     public static func +(lhs: Self, rhs: CGFloat) -> Self {
         Self(lhs.dx + rhs, lhs.dy + rhs)
@@ -116,6 +125,17 @@ public func /(lhs: (CGFloat, CGFloat), rhs: (CGFloat, CGFloat)) -> (CGFloat, CGF
     (lhs.0 / rhs.0, lhs.1 / rhs.1)
 }
 
+
+extension CGFloat {
+    /// Limits the precision of a CGFloat to a specified number of decimal places.
+    /// - Parameters:
+    ///   - decimalPlaces: The number of decimal places to retain.
+    /// - Returns: A CGFloat rounded to the specified number of decimal places.
+    public func limitingPrecision(to decimalPlaces: Int) -> Self {
+        let multiplier = pow(10.0, CGFloat(decimalPlaces))
+        return (self * multiplier).rounded() / multiplier
+    }
+}
 
 extension CGPoint: CGVectorType {
     public var dx: CGFloat {
