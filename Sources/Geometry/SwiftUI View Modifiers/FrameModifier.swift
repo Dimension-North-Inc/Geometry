@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-private struct FrameReader: ViewModifier {
+private struct FrameModifier: ViewModifier {
     struct Frame: PreferenceKey {
         static var defaultValue: CGRect = .zero
         static func reduce(value: inout CGRect, nextValue: () -> CGRect) {}
@@ -42,7 +42,7 @@ extension View {
     ///   - coordinates: a coordinate space
     /// - Returns: a modified view
     public func rect(_ value: Binding<CGRect>, in coordinates: CoordinateSpace = .global) -> some View {
-        self.modifier(FrameReader(coordinates: coordinates) {
+        self.modifier(FrameModifier(coordinates: coordinates) {
             value.wrappedValue = $0
         })
     }
@@ -53,7 +53,7 @@ extension View {
     ///   - coordinates: a coordinate space
     /// - Returns: a modified view
     public func size(_ value: Binding<CGSize>, in coordinates: CoordinateSpace = .global) -> some View {
-        self.modifier(FrameReader(coordinates: coordinates) {
+        self.modifier(FrameModifier(coordinates: coordinates) {
             value.wrappedValue = $0.size
         })
     }
@@ -64,7 +64,7 @@ extension View {
     ///   - coordinates: a coordinate space
     /// - Returns: a modified view
     public func origin(_ value: Binding<CGPoint>, in coordinates: CoordinateSpace = .global) -> some View {
-        self.modifier(FrameReader(coordinates: coordinates) {
+        self.modifier(FrameModifier(coordinates: coordinates) {
             value.wrappedValue = $0.origin
         })
     }

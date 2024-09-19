@@ -32,6 +32,11 @@ extension CGVectorType {
         dx * dx + dy * dy
     }
 
+    /// Vector normal
+    var normal: Self {
+        self / length
+    }
+
     /// Unit representation of the type.
     public static var unit: Self {
         Self(1, 1)
