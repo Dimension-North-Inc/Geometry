@@ -19,7 +19,7 @@ private struct FrameList<ID>: PreferenceKey where ID: Hashable {
 
 private enum FrameListModifier<ID>: ViewModifier where ID: Hashable {
     case reader(onChange: ([ID: CGRect])-> ())
-    case writer(id: ID, coordinates: CoordinateSpace)
+    case writer(id: ID, coordinates: CoordinateSpaceProtocol)
     
     public func body(content: Content) -> some View {
         switch self {
@@ -49,7 +49,7 @@ extension View {
     /// - Parameter id: the current view's corresponding ID
     /// - Parameter coordinates: the coordinate space in which the frame is expressed
     /// - Returns: a View
-    public func writeFrame<ID>(id: ID, coordinates: CoordinateSpace) -> some View where ID: Hashable {
+    public func writeFrame<ID>(id: ID, coordinates: CoordinateSpaceProtocol = .global) -> some View where ID: Hashable {
         self.modifier(FrameListModifier<ID>.writer(id: id, coordinates: coordinates))
     }
 

@@ -15,9 +15,9 @@ private struct FrameModifier: ViewModifier {
     }
 
     var onChange: (CGRect) -> ()
-    var coordinates: CoordinateSpace
+    var coordinates: CoordinateSpaceProtocol
 
-    init(coordinates: CoordinateSpace, onChange: @escaping (CGRect) -> ()) {
+    init(coordinates: CoordinateSpaceProtocol, onChange: @escaping (CGRect) -> ()) {
         self.onChange = onChange
         self.coordinates = coordinates
     }
@@ -41,7 +41,7 @@ extension View {
     ///   - value: a `CGRect` binding
     ///   - coordinates: a coordinate space
     /// - Returns: a modified view
-    public func rect(_ value: Binding<CGRect>, in coordinates: CoordinateSpace = .global) -> some View {
+    public func rect(_ value: Binding<CGRect>, in coordinates: CoordinateSpaceProtocol = .global) -> some View {
         self.modifier(FrameModifier(coordinates: coordinates) {
             value.wrappedValue = $0
         })
@@ -52,7 +52,7 @@ extension View {
     ///   - value: a `CGSize` binding
     ///   - coordinates: a coordinate space
     /// - Returns: a modified view
-    public func size(_ value: Binding<CGSize>, in coordinates: CoordinateSpace = .global) -> some View {
+    public func size(_ value: Binding<CGSize>, in coordinates: CoordinateSpaceProtocol = .global) -> some View {
         self.modifier(FrameModifier(coordinates: coordinates) {
             value.wrappedValue = $0.size
         })
@@ -63,7 +63,7 @@ extension View {
     ///   - value: a `CGPoint` binding
     ///   - coordinates: a coordinate space
     /// - Returns: a modified view
-    public func origin(_ value: Binding<CGPoint>, in coordinates: CoordinateSpace = .global) -> some View {
+    public func origin(_ value: Binding<CGPoint>, in coordinates: CoordinateSpaceProtocol = .global) -> some View {
         self.modifier(FrameModifier(coordinates: coordinates) {
             value.wrappedValue = $0.origin
         })
