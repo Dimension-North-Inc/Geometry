@@ -36,7 +36,7 @@ private struct FrameModifier: ViewModifier {
 
 extension View {
     
-    /// An extension whose  `value` tracks the enclosed view's bounding rectangle in `coordinates`
+    /// A modifier whose  `value` tracks the enclosed view's bounding rectangle in `coordinates`
     /// - Parameters:
     ///   - value: a `CGRect` binding
     ///   - coordinates: a coordinate space
@@ -47,7 +47,7 @@ extension View {
         })
     }
 
-    /// An extension whose  `value` tracks the enclosed view's size in `coordinates`
+    /// A modifier  whose  `value` tracks the enclosed view's size in `coordinates`
     /// - Parameters:
     ///   - value: a `CGSize` binding
     ///   - coordinates: a coordinate space
@@ -58,7 +58,7 @@ extension View {
         })
     }
 
-    /// An extension whose  `value` tracks the enclosed view's origin in `coordinates`
+    /// A modifier  whose  `value` tracks the enclosed view's origin in `coordinates`
     /// - Parameters:
     ///   - value: a `CGPoint` binding
     ///   - coordinates: a coordinate space

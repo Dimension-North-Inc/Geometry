@@ -82,16 +82,6 @@ extension CGPath {
 
 // MARK: - Helper Functions
 
-/// Limits the precision of a CGFloat to a specified number of decimal places.
-/// - Parameters:
-///   - value: The CGFloat value to limit.
-///   - places: The number of decimal places to retain.
-/// - Returns: A CGFloat rounded to the specified number of decimal places.
-private func limitPrecision(_ value: CGFloat, toDecimalPlaces places: Int) -> CGFloat {
-    let multiplier = pow(10.0, CGFloat(places))
-    return (value * multiplier).rounded() / multiplier
-}
-
 /// Creates a CGVector from two CGPoints.
 /// - Parameters:
 ///   - from: The starting CGPoint.
